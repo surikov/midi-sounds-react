@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
-//ReactModal.setAppElement('#root');
+import WebAudioFontPlayer from 'webaudiofont';
+
 const STYLE = {
   MIDISoundsInfo: {
     height:'100%'
@@ -18,12 +19,12 @@ const STYLE = {
   ,MIDISoundsEq: {
     writingMode: 'bt-lr' /* IE */
     ,WebkitAppearance: 'slider-vertical' /* WebKit */
-    ,width: '7%'
+    ,width: '0.5cm'
     ,height: '4cm'
     ,padding: '0 5px'
   }
   ,MIDISoundsVl: {
-    width: '90%'
+    width: '95%'
   }
 };
 class MIDISounds extends React.Component {
@@ -39,28 +40,31 @@ class MIDISounds extends React.Component {
     }
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+	this.initAudio();
+	console.log('done constructor MIDISounds',props);
   }
   render() {
     console.log('MIDISounds render');
-    return (
+    var r= (
       <div className="MIDISounds">
-        
         <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds</button>
         <ReactModal isOpen={this.state.showModal} contentLabel="Minimal Modal Example" >
           <div style={STYLE.MIDISoundsInfo}>
-            <p style={STYLE.MIDISoundsClose2}><a href='#' onClick={this.handleCloseModal}>Reset</a> | <a href='#' onClick={this.handleCloseModal}>Help</a> | <a href='#' onClick={this.handleCloseModal}>Close</a></p>
+            <p style={STYLE.MIDISoundsClose2}><a href='#' onClick={this.resetAudio.bind(this)}>Reset</a> | <a href='https://surikov.github.io/midi-sounds-react/'>Help</a> | <a href='#' onClick={this.handleCloseModal}>Close</a></p>
             <p>Equalizer <a href='#' onClick={this.handleCloseModal}>Power</a> | <a href='#' onClick={this.handleCloseModal}>Dance</a> | <a href='#' onClick={this.handleCloseModal}>None</a></p>
             <p>
-              <input type='range' style={STYLE.MIDISoundsEq} />
-              <input type='range' style={STYLE.MIDISoundsEq} />
-              <input type='range' style={STYLE.MIDISoundsEq} />
-              <input type='range' style={STYLE.MIDISoundsEq} />
-              <input type='range' style={STYLE.MIDISoundsEq} />
-              <input type='range' style={STYLE.MIDISoundsEq} />
-              <input type='range' style={STYLE.MIDISoundsEq} />
-              <input type='range' style={STYLE.MIDISoundsEq} />
-              <input type='range' style={STYLE.MIDISoundsEq} />
-              <input type='range' style={STYLE.MIDISoundsEq} />
+				<nobr>
+				  <input type='range' style={STYLE.MIDISoundsEq} />
+				  <input type='range' style={STYLE.MIDISoundsEq} />
+				  <input type='range' style={STYLE.MIDISoundsEq} />
+				  <input type='range' style={STYLE.MIDISoundsEq} />
+				  <input type='range' style={STYLE.MIDISoundsEq} />
+				  <input type='range' style={STYLE.MIDISoundsEq} />
+				  <input type='range' style={STYLE.MIDISoundsEq} />
+				  <input type='range' style={STYLE.MIDISoundsEq} />
+				  <input type='range' style={STYLE.MIDISoundsEq} />
+				  <input type='range' style={STYLE.MIDISoundsEq} />
+				</nobr>
             </p>
             <p>Master volume <br/><input type='range' style={STYLE.MIDISoundsVl} /></p>
             <p>Echo level <br/><input type='range' style={STYLE.MIDISoundsVl} /></p>
@@ -69,6 +73,8 @@ class MIDISounds extends React.Component {
         </ReactModal>
       </div>
     );
+	console.log('done MIDISounds render');
+	return r;
   }
   logStatus() {
     console.log('logStatus M♩D♩Sounds');
@@ -83,6 +89,17 @@ class MIDISounds extends React.Component {
   
   handleCloseModal () {
     this.setState({ showModal: false });
+  }
+  initAudio(){
+	  console.log('initAudio M♩D♩Sounds');
+	  var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
+	  this.audioContext = new AudioContextFunc();
+	  this.target = this.audioContext.destination;
+	  this.player=new WebAudioFontPlayer();
+  }
+  resetAudio(){
+	  this.initAudio();
+	  this.handleCloseModal();
   }
 }
 
