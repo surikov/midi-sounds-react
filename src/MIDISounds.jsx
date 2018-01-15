@@ -34,6 +34,7 @@ class MIDISounds extends React.Component {
     this.state = {
       showModal: false
       ,appElementName:this.props.appElementName
+	  ,sendInstruments:this.props.sendInstruments
     };
     if(this.props.appElementName){
       ReactModal.setAppElement('#'+this.props.appElementName);
@@ -42,6 +43,27 @@ class MIDISounds extends React.Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
 	this.initAudio();
 	console.log('done constructor MIDISounds',props);
+  }
+  componentDidMount() {
+	  console.log('componentDidMount MIDISounds');
+	  if(this.props.sendInstruments){
+		//this.props.sendInstruments(['qqq','wwww','ddd']);
+		var arr=[];
+		for(var i = 0; i < this.player.loader.instrumentKeys().length; i++) {
+				arr.push(''+(i+1)+'. '+this.player.loader.instrumentInfo(i).title);
+			}
+		this.props.sendInstruments(arr);
+		}
+  }
+  componentWillUnmount() {
+	  console.log('componentWillUnmount MIDISounds');
+  }
+  getInitialState() { 
+	console.log('getInitialState MIDISounds');
+    return { 
+        instruments: []
+		,drums:[]
+    }; 
   }
   render() {
     console.log('MIDISounds render');
