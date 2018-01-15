@@ -90,7 +90,7 @@ class MIDISounds extends React.Component {
             </p>
             <p>Master volume <br/><input type='range' style={STYLE.MIDISoundsVl} /></p>
             <p>Echo level <br/><input type='range' style={STYLE.MIDISoundsVl} /></p>
-            
+            <p>MIDI input: initializing</p>
           </div>
         </ReactModal>
       </div>
