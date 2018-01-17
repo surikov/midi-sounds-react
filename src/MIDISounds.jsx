@@ -32,11 +32,21 @@ class MIDISounds extends React.Component {
     super(props);
     this.state = {
       showModal: false
-      //, onPropertiesChanged: this.props.onPropertiesChanged
       , appElementName: this.props.appElementName
       , instruments: this.props.instruments
       , drums: this.props.drums
       , master: 1.0
+      , echo: 0.5
+      , q32: 0
+      , q64: 0
+      , q128: 0
+      , q256: 0
+      , q512: 0
+      , q1k: 0
+      , q2k: 0
+      , q4k: 0
+      , q8k: 0
+      , q16k: 0
     };
     if (this.props.appElementName) {
       ReactModal.setAppElement('#' + this.props.appElementName);
@@ -54,25 +64,25 @@ class MIDISounds extends React.Component {
         <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds</button>
         <ReactModal isOpen={this.state.showModal} contentLabel="Minimal Modal Example" >
           <div style={STYLE.MIDISoundsInfo}>
-            <p>Equalizer <button onClick={this.handleCloseModal}>Power</button>
-              <button onClick={this.handleCloseModal}>Dance</button>
-              <button onClick={this.handleCloseModal}>None</button></p>
+            <p>Equalizer <button onClick={this.onSetPower.bind(this)}>Power</button>
+              <button onClick={this.onSetDance.bind(this)}>Dance</button>
+              <button onClick={this.onSetNone.bind(this)}>None</button></p>
             <p>
               <nobr>
-                <input type='range' style={STYLE.MIDISoundsEq} />
-                <input type='range' style={STYLE.MIDISoundsEq} />
-                <input type='range' style={STYLE.MIDISoundsEq} />
-                <input type='range' style={STYLE.MIDISoundsEq} />
-                <input type='range' style={STYLE.MIDISoundsEq} />
-                <input type='range' style={STYLE.MIDISoundsEq} />
-                <input type='range' style={STYLE.MIDISoundsEq} />
-                <input type='range' style={STYLE.MIDISoundsEq} />
-                <input type='range' style={STYLE.MIDISoundsEq} />
-                <input type='range' style={STYLE.MIDISoundsEq} />
+                <input type='range' style={STYLE.MIDISoundsEq} value={this.state.q32} min={-10.0} max={10.0} step={1.0} onChange={this.onChangeQ32.bind(this)} />
+                <input type='range' style={STYLE.MIDISoundsEq} value={this.state.q64} min={-10.0} max={10.0} step={1.0} onChange={this.onChangeQ64.bind(this)} />
+                <input type='range' style={STYLE.MIDISoundsEq} value={this.state.q128} min={-10.0} max={10.0} step={1.0} onChange={this.onChangeQ128.bind(this)} />
+                <input type='range' style={STYLE.MIDISoundsEq} value={this.state.q256} min={-10.0} max={10.0} step={1.0} onChange={this.onChangeQ256.bind(this)} />
+                <input type='range' style={STYLE.MIDISoundsEq} value={this.state.q512} min={-10.0} max={10.0} step={1.0} onChange={this.onChangeQ512.bind(this)} />
+                <input type='range' style={STYLE.MIDISoundsEq} value={this.state.q1k} min={-10.0} max={10.0} step={1.0} onChange={this.onChangeQ1k.bind(this)} />
+                <input type='range' style={STYLE.MIDISoundsEq} value={this.state.q2k} min={-10.0} max={10.0} step={1.0} onChange={this.onChangeQ2k.bind(this)} />
+                <input type='range' style={STYLE.MIDISoundsEq} value={this.state.q4k} min={-10.0} max={10.0} step={1.0} onChange={this.onChangeQ4k.bind(this)} />
+                <input type='range' style={STYLE.MIDISoundsEq} value={this.state.q8k} min={-10.0} max={10.0} step={1.0} onChange={this.onChangeQ8k.bind(this)} />
+                <input type='range' style={STYLE.MIDISoundsEq} value={this.state.q16k} min={-10.0} max={10.0} step={1.0} onChange={this.onChangeQ16k.bind(this)} />
               </nobr>
             </p>
             <p>Master volume <br /><input type='range' value={this.state.master} min={0.0} max={1.5} step={0.1} style={STYLE.MIDISoundsVl} onChange={this.onChangeMaster.bind(this)} /></p>
-            <p>Echo level <br /><input type='range' style={STYLE.MIDISoundsVl} /></p>
+            <p>Echo level <br /><input type='range' style={STYLE.MIDISoundsVl} value={this.state.echo} min={0.0} max={1.5} step={0.1} onChange={this.onChangeEcho.bind(this)} /></p>
             <p>MIDI input: initializing</p>
             <p style={STYLE.MIDISoundsClose}>
               &nbsp;<br />
@@ -85,14 +95,89 @@ class MIDISounds extends React.Component {
     );
     return r;
   }
+  onSetNone() {
+    this.setBand32(0);
+    this.setBand64(0);
+    this.setBand128(0);
+    this.setBand256(0);
+    this.setBand512(0);
+    this.setBand1k(0);
+    this.setBand2k(0);
+    this.setBand4k(0);
+    this.setBand8k(0);
+    this.setBand16k(0);
+  }
+  onSetDance() {
+    this.setBand32(2);
+    this.setBand64(2);
+    this.setBand128(1);
+    this.setBand256(1);
+    this.setBand512(-1);
+    this.setBand1k(4);
+    this.setBand2k(4);
+    this.setBand4k(2);
+    this.setBand8k(-2);
+    this.setBand16k(3);
+  }
+  onSetPower() {
+    this.setBand32(2);
+    this.setBand64(4);
+    this.setBand128(3);
+    this.setBand256(-2);
+    this.setBand512(-3);
+    this.setBand1k(1);
+    this.setBand2k(2);
+    this.setBand4k(3);
+    this.setBand8k(-3);
+    this.setBand16k(1);
+  }
   onChangeMaster(e) {
     let n = e.target.value;
     this.setMasterVolume(n);
-    /*if (this.state.onPropertiesChanged) {
-      console.log('MIDISounds onChangeMaster', this.state.master);
-      this.state.onPropertiesChanged();
-    }
-    console.log('MIDISounds onChangeMaster done', this.state.master);*/
+  }
+  onChangeEcho(e) {
+    let n = e.target.value;
+    this.setEchoLevel(n);
+  }
+  onChangeQ32(e) {
+    let n = e.target.value;
+    this.setBand32(n);
+  }
+  onChangeQ64(e) {
+    let n = e.target.value;
+    this.setBand64(n);
+  }
+  onChangeQ128(e) {
+    let n = e.target.value;
+    this.setBand128(n);
+  }
+  onChangeQ256(e) {
+    let n = e.target.value;
+    this.setBand256(n);
+  }
+  onChangeQ512(e) {
+    let n = e.target.value;
+    this.setBand512(n);
+  }
+  onChangeQ1k(e) {
+    let n = e.target.value;
+    this.setBand1k(n);
+  }
+  onChangeQ2k(e) {
+    let n = e.target.value;
+    this.setBand2k(n);
+  }
+  onChangeQ4k(e) {
+    let n = e.target.value;
+    this.setBand4k(n);
+  }
+  onChangeQ8k(e) {
+    let n = e.target.value;
+    this.setBand8k(n);
+  }
+  onChangeQ16k(e) {
+    let n = e.target.value;
+    this.setBand16k(n);
   }
   refreshCache() {
     if (this.state.instruments) {
@@ -179,7 +264,6 @@ class MIDISounds extends React.Component {
       this.playDrum(when, drums[i]);
     }
   }
-
   volumeInstrumentAdjust(instrument) {
     if (!(this.volumesInstrument[instrument] === undefined)) {
       return this.volumesInstrument[instrument];
@@ -187,7 +271,6 @@ class MIDISounds extends React.Component {
     return 1;
   }
   volumeDrumAdjust(drum) {
-    //console.log('volumeDrumAdjust',drum,this.volumesDrum);
     if (!(this.volumesDrum[drum] === undefined)) {
       return this.volumesDrum[drum];
     }
@@ -320,36 +403,69 @@ class MIDISounds extends React.Component {
   }
   setEchoLevel(value) {
     this.echo.wet.gain.setTargetAtTime(value, 0, 0.0001);
+    this.setState({
+      echo: value
+    });
   }
   setBand32(level) {
     this.equalizer.band32.gain.setTargetAtTime(level, 0, 0.0001);
+    this.setState({
+      q32: level
+    });
   }
   setBand64(level) {
     this.equalizer.band64.gain.setTargetAtTime(level, 0, 0.0001);
+    this.setState({
+      q64: level
+    });
   }
   setBand128(level) {
     this.equalizer.band128.gain.setTargetAtTime(level, 0, 0.0001);
+    this.setState({
+      q128: level
+    });
   }
   setBand256(level) {
     this.equalizer.band256.gain.setTargetAtTime(level, 0, 0.0001);
+    this.setState({
+      q256: level
+    });
   }
   setBand512(level) {
     this.equalizer.band512.gain.setTargetAtTime(level, 0, 0.0001);
+    this.setState({
+      q512: level
+    });
   }
   setBand1k(level) {
     this.equalizer.band1k.gain.setTargetAtTime(level, 0, 0.0001);
+    this.setState({
+      q1k: level
+    });
   }
   setBand2k(level) {
     this.equalizer.band2k.gain.setTargetAtTime(level, 0, 0.0001);
+    this.setState({
+      q2k: level
+    });
   }
   setBand4k(level) {
     this.equalizer.band4k.gain.setTargetAtTime(level, 0, 0.0001);
+    this.setState({
+      q4k: level
+    });
   }
   setBand8k(level) {
     this.equalizer.band8k.gain.setTargetAtTime(level, 0, 0.0001);
+    this.setState({
+      q8k: level
+    });
   }
   setBand16k(level) {
     this.equalizer.band16k.gain.setTargetAtTime(level, 0, 0.0001);
+    this.setState({
+      q16k: level
+    });
   }
   setKeyboardInstrument(n) {
     var info = this.player.loader.instrumentInfo(n);

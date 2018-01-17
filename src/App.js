@@ -25,6 +25,7 @@ const _Em = [
 	, S2 + 0
 	, S1 + 0
 ];
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -144,6 +145,12 @@ class App extends Component {
 			masterVolume: n
 		});
 	}
+	testPly(){
+
+	}
+	testStp(){
+		
+	}
 	/*onPropertiesChanged(){
 		console.log('onPropertiesChanged',this.midiSounds.getProperties());
 		this.setState({masterVolume:this.midiSounds.getProperties().master})
@@ -176,8 +183,15 @@ class App extends Component {
 					<button onClick={this.playDrSingle.bind(this)}>1</button>
 					<button onClick={this.playDrTr.bind(this)}>2</button>
 				</p>
+				<h2>info</h2>
 				<p>Info <button type="button" onClick={this.clickLog.bind(this)} >Log status</button></p>
+				<h2>master</h2>
 				<p>Master <input type='range' value={this.state.masterVolume} min={0.0} max={1.5} step={0.1} onChange={this.changeMasterVolume.bind(this)} /></p>
+				<h2>tst</h2>
+				<p>
+					<button type="button" onClick={this.testPly.bind(this)} >P</button>
+					<button type="button" onClick={this.testStp.bind(this)} >S</button>
+				</p>
 			</div>
 		);
 		//console.log('done App render');
