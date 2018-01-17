@@ -78,23 +78,23 @@ class App extends Component {
 		this.setState({ initialized: true });
 	}
 	selectIns(e) {
-		console.log('selectIns', this, e);
+		//console.log('selectIns', this, e);
 		let select = e.target;
 		let n = select.options[select.selectedIndex].getAttribute("value");
 		this.setState({
 			selInsNum: n
 		});
-		console.log('select', n);
+		//console.log('select', n);
 		this.midiSounds.cacheInstrument(n);
 	}
 	selectDr(e) {
-		console.log('selectDr', this, e);
+		//console.log('selectDr', this, e);
 		let select = e.target;
 		let n = select.options[select.selectedIndex].getAttribute("value");
 		this.setState({
 			selDrNum: n
 		});
-		console.log('select', n);
+		//console.log('select', n);
 		this.midiSounds.cacheDrum(n);
 	}
 	playCurSingle() {
@@ -158,7 +158,7 @@ class App extends Component {
 					<h1 className="App-title">Welcome</h1>
 				</header>
 				<h2>Component</h2>
-				<MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" instruments={[]} drums={[]} />
+				<MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" instruments={[this.state.selInsNum]} drums={[this.state.selDrNum]} />
 				<h2>Simple</h2>
 				<select value={this.state.selInsNum} onChange={this.selectIns.bind(this)}>{this.createSelectItems()}</select>
 				<p>
