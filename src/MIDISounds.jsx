@@ -111,8 +111,8 @@ class MIDISounds extends React.Component {
     this.setBand32(2);
     this.setBand64(2);
     this.setBand128(1);
-    this.setBand256(1);
-    this.setBand512(-1);
+    this.setBand256(-1);
+    this.setBand512(5);
     this.setBand1k(4);
     this.setBand2k(4);
     this.setBand4k(2);

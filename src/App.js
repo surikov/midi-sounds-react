@@ -5,11 +5,16 @@ import MIDISounds from './MIDISounds.jsx';
 //const sample = { i: null };
 const O = 12;
 const C = 0;
+const c = 1;
 const D = 2;
+const d = 3;
 const E = 4
 const F = 5;
+const f = 6;
 const G = 7;
+const g = 8;
 const A = 9;
+const a = 10;
 const B = 11;
 const S1 = 5 * O + E;
 const S2 = 4 * O + B;
@@ -25,7 +30,81 @@ const _Em = [
 	, S2 + 0
 	, S1 + 0
 ];
-
+const hihat=56;
+const drum=2;
+const snare=17;
+const pedal=35;
+const bass=437;
+const hit=609;
+const synth=161;//518;//564;//544;
+const notes=[
+	[[pedal,drum      ],[[bass,O*2+C,1/16],[hit,O*5+C,1/4],[synth,O*2+C,1/1],[synth,O*4+C,1/1],[synth,O*2+G,1/1],[synth,O*5+C,1/2],[synth,O*5+d,3/8]]]//1/16
+   ,[[pedal           ],[                                                                                                                           ]]
+   ,[[hihat           ],[[bass,O*2+C,1/16]                                                                                                          ]]
+   ,[[                ],[[bass,O*2+C,1/16]                                                                                                          ]]
+   ,[[pedal,drum,snare],[[bass,O*2+C,1/16]                                                                                                          ]]
+   ,[[pedal           ],[[bass,O*2+C,1/16]                                                                                                          ]]
+   ,[[hihat           ],[[bass,O*2+C,1/16],                [synth,O*5+d,1/8]                                                                        ]]
+   ,[[                ],[[bass,O*2+C,1/16]                                                                                                          ]]
+   ,[[pedal,drum      ],[[bass,O*2+C,1/16],                [synth,O*5+C,1/8]                                                                        ]]//
+   ,[[pedal           ],[[bass,O*2+C,1/16],                [synth,O*2+C,1/1]                                                                        ]]
+   ,[[hihat           ],[                                  [synth,O*5+d,1/8]                                                                        ]]
+   ,[[                ],[[bass,O*2+C,1/16]                                                                                                          ]]
+   ,[[pedal,drum,snare],[[bass,O*2+C,1/16],                [synth,O*5+d,1/8]                                                                        ]]
+   ,[[pedal           ],[[bass,O*2+C,1/16]                                                                                                          ]]
+   ,[[hihat           ],[[bass,O*2+C,1/16],[hit,O*4+G,1/8],[synth,O*5+G,1/8]                                                                        ]]
+   ,[[                ],[[bass,O*2+C,1/16]                                                                                                          ]]
+   ,[[pedal,drum      ],[[bass,O*1+G,1/16],[hit,O*5+a,1/4],[synth,O*2+G,1/1],[synth,O*4+G,1/1],[synth,O*5+d,3/1],[synth,O*5+a,3/8]                  ]]//16/16
+   ,[[pedal           ],[                                                                                                                           ]]
+   ,[[hihat           ],[[bass,O*1+G,1/16]                                                                                                          ]]
+   ,[[                ],[[bass,O*1+G,1/16]                                                                                                          ]]
+   ,[[pedal,drum,snare],[[bass,O*1+G,1/16]                                                                                                          ]]
+   ,[[pedal           ],[[bass,O*1+G,1/16]                                                                                                          ]]
+   ,[[hihat           ],[[bass,O*1+G,1/16],                [synth,O*5+a,1/8]                                                                        ]]
+   ,[[                ],[[bass,O*1+G,1/16]                                                                                                          ]]
+   ,[[pedal,drum      ],[[bass,O*1+G,1/16],                [synth,O*5+G,1/8]                                                                        ]]
+   ,[[pedal           ],[[bass,O*1+G,1/16]                                                                                                          ]]
+   ,[[hihat           ],[[bass,O*1+G,1/16],                [synth,O*5+a,1/8]                                                                        ]]
+   ,[[                ],[[bass,O*1+G,1/16]                                                                                                          ]]
+   ,[[pedal,drum,snare],[[bass,O*1+G,1/16],                [synth,O*5+a,1/8]                                                                        ]]
+   ,[[pedal           ],[[bass,O*1+G,1/16]                                                                                                          ]]
+   ,[[hihat           ],[[bass,O*1+G,1/16],[hit,O*5+d,1/8],[synth,O*6+D,1/8]                                                                        ]]
+   ,[[                ],[[bass,O*1+G,1/16]                                                                                                          ]]
+   ,[[pedal,drum      ],[[bass,O*1+a,1/16],[hit,O*5+F,1/1],[synth,O*2+a,2/1],[synth,O*4+a,2/1],[synth,O*5+F,2/1],[synth,O*6+F,2/1]                  ]]//32/16
+   ,[[pedal           ],[                                                                                                                           ]]
+   ,[[hihat           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[                ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal,drum,snare],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[hihat           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[                ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal,drum      ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[hihat           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[                ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal,drum,snare],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[hihat           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[                ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal,drum      ],[[bass,O*1+a,1/16]                                                                                                          ]]//48/16
+   ,[[pedal           ],[                                                                                                                           ]]
+   ,[[hihat           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[                ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal,drum,snare],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[hihat           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[                ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal,drum      ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[hihat           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[                ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal,drum,snare],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[pedal           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[hihat           ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ,[[                ],[[bass,O*1+a,1/16]                                                                                                          ]]
+   ];
+   
+   
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -146,10 +225,66 @@ class App extends Component {
 		});
 	}
 	testPly(){
-
+		//this.midiSounds.setInstrumentVolume(hit,0.1);
+		//this.midiSounds.setInstrumentVolume(synth,0.1);
+		//this.midiSounds.setInstrumentVolume(bass,0.1);
+		//this.midiSounds.setDrumVolume(drum,0.1);
+		//this.midiSounds.setDrumVolume(hihat,0.1);
+		//this.midiSounds.setDrumVolume(pedal,0.1);
+		//this.midiSounds.setDrumVolume(snare,0.1);
+		//bass=this.state.selInsNum;
+		this.bpm = 120;
+		this.N = 4 * 60 / this.bpm;
+		this.pieceLen = 4 * this.N;
+		this.beatLen=1/16 * this.N;
+		if (this.started) {
+			console.log('started already');
+		} else {
+			console.log('start now');
+			this.started = true;
+			this.startTime = this.midiSounds.audioContext.currentTime + 0.1;
+			this.nextPiece();
+			this.startTime = this.startTime + this.pieceLen;
+			var me=this;
+			this.interval=setInterval(function () {
+				if (me.midiSounds.audioContext.currentTime > me.startTime - 1 / 4 * me.N) {
+					me.nextPiece();
+					me.startTime = me.startTime + me.pieceLen;
+				}
+			}, 20);
+		}
 	}
 	testStp(){
-		
+		this.started = false;
+		clearInterval(this.interval);
+		this.midiSounds.player.cancelQueue(this.midiSounds.audioContext);
+	}
+	nextPiece() {
+		for (var n = 0; n < notes.length; n++) {
+			var beat = notes[n];
+			//var drumsArr=beat[i][0];
+			this.midiSounds.playDrumsAt(this.startTime + n * this.beatLen,beat[0]);
+			var insArr=beat[1];
+			for(var i=0;i<insArr.length;i++){
+				var noteArr=insArr[i];
+				var num=noteArr[0];
+				if(synth==num){
+					//num=this.state.selInsNum;
+				}
+				this.midiSounds.playChordAt(this.startTime + n * this.beatLen,num,[noteArr[1]],noteArr[2]*this.N);
+				//console.log(noteArr[0],[noteArr[1],noteArr[2]]);
+			}
+			//console.log(n,beat);
+			//for (var d = 0; d < drumsArr.length; d++) {
+				//if (beat[i]) {
+					//player.queueWaveTable(audioContext, beat[i].gain, beat[i].preset, startTime + n * beatLen , beat[i].pitch, beat[i].duration);
+					
+					//var drumsArr=beat[i][0];
+					//console.log(i,drumsArr);
+
+				//}
+			//}
+		}
 	}
 	/*onPropertiesChanged(){
 		console.log('onPropertiesChanged',this.midiSounds.getProperties());
@@ -165,7 +300,7 @@ class App extends Component {
 					<h1 className="App-title">Welcome</h1>
 				</header>
 				<h2>Component</h2>
-				<MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" instruments={[this.state.selInsNum]} drums={[this.state.selDrNum]} />
+				<MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" instruments={[this.state.selInsNum,bass,hit,synth]} drums={[this.state.selDrNum,hihat,drum,snare,pedal]} />
 				<h2>Simple</h2>
 				<select value={this.state.selInsNum} onChange={this.selectIns.bind(this)}>{this.createSelectItems()}</select>
 				<p>
