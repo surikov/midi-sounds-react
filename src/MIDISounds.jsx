@@ -313,19 +313,21 @@ class MIDISounds extends React.Component {
   startPlayLoop(beats, bpm, density) {
     this.stopPlayLoop();
     this.loopStarted = true;
-    var nextLoopTime = this.contextTime();
+    //var nextLoopTime = this.contextTime();
     var wholeNoteDuration = 4 * 60 / bpm;
+    
+    this.playBeatAt(this.contextTime(), beats[0], bpm);
+    var nextLoopTime = this.contextTime() + density * wholeNoteDuration;
     var beatIndex = 0;
-    this.playBeatAt(nextLoopTime, beats[beatIndex], bpm);
     var me = this;
     this.loopIntervalID = setInterval(function () {
       if (me.contextTime() > nextLoopTime - density * wholeNoteDuration / 2) {
-        me.playBeatAt(nextLoopTime, beats[beatIndex], bpm);
-        nextLoopTime = nextLoopTime + density * wholeNoteDuration;
         beatIndex++;
         if (beatIndex >= beats.length) {
           beatIndex = 0;
         }
+        me.playBeatAt(nextLoopTime, beats[beatIndex], bpm);
+        nextLoopTime = nextLoopTime + density * wholeNoteDuration;
       }
     }, density * wholeNoteDuration / 3);
   }

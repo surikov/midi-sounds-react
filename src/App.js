@@ -349,13 +349,47 @@ class App extends Component {
 		//}
 	}
 	testChPly(){
-		var bt=[[],[[this.state.selInsNum,_Em,1/8]]];
+		var guitar=this.state.selInsNum;
+		var bt=[[],[[this.state.selInsNum,_Em,1/4,1]]];
 		var data=[
-			bt
+			 [[],[[guitar,[S6+1,S5+3,S4+3],3/16,1]]]
 			,[[],[]]
+			,[[],[]]
+			,[[],[[guitar,[S6+1,S5+3,S4+3],1/16,1]]]			
+			,[[],[[guitar,[S6+1,S5+3,S4+3],2/16,2]]]
+			,[[],[]]
+			,[[],[[guitar,[S5+1,S4+3,S3+3],1/16,3]]]
+			,[[],[[guitar,[S5+1,S4+3,S3+3],1/16,3]]]
+
+			,[[],[[guitar,[S5+1,S4+3,S3+3],1/16,3]]]
+			,[[],[[guitar,[S5+1,S4+3,S3+3],1/16,3]]]
+			,[[],[[guitar,[S5+1,S4+3,S3+3],2/16,1]]]
+			,[[],[]]
+			,[[],[[guitar,[S5+1,S4+3,S3+3],2/16,1]]]
+			,[[],[]]
+			,[[],[[guitar,[S5+0,S4+0,S3+0],2/16,2]]]
+			,[[],[]]
+
+			,[[],[[guitar,[S6+4,S5+6,S4+6],3/16,1]]]
+			,[[],[]]
+			,[[],[]]
+			,[[],[[guitar,[S6+4,S5+6,S4+6],1/16,1]]]
+			,[[],[[guitar,[S6+4,S5+6,S4+6],2/16,2]]]
+			,[[],[]]
+			,[[],[[guitar,[S5+4,S4+6,S3+6],1/16,3]]]
+			,[[],[[guitar,[S5+4,S4+6,S3+6],1/16,3]]]
+
+			,[[],[[guitar,[S5+4,S4+6,S3+6],1/16,3]]]
+			,[[],[[guitar,[S5+4,S4+6,S3+6],1/16,3]]]
+			,[[],[[guitar,[S5+4,S4+6,S3+6],2/16,1]]]
+			,[[],[]]
+			,[[],[[guitar,[S5+4,S4+6,S3+6],2/16,1]]]
+			,[[],[]]
+			,[[],[[guitar,[S5+4,S4+6,S3+6],2/16,2]]]
+			,[[],[]]			
 		];
-		this.midiSounds.playBeatAt(0,bt,120);
-		this.midiSounds.startPlayLoop(data, 123, 1/8);
+		//this.midiSounds.playBeatAt(0,bt,150);
+		this.midiSounds.startPlayLoop(data, 120, 1/16);
 	}
 	testChStp(){
 		this.midiSounds.stopPlayLoop();
