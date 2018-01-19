@@ -320,7 +320,7 @@ class MIDISounds extends React.Component {
     var me = this;
     this.loopIntervalID = setInterval(function () {
       if (me.contextTime() > nextLoopTime - density * wholeNoteDuration / 2) {
-        this.playBeatAt(nextLoopTime, beats[beatIndex], bpm);
+        me.playBeatAt(nextLoopTime, beats[beatIndex], bpm);
         nextLoopTime = nextLoopTime + density * wholeNoteDuration;
         beatIndex++;
         if (beatIndex >= beats.length) {
@@ -341,11 +341,11 @@ class MIDISounds extends React.Component {
     //console.log(when, beat, bpm);
     this.playDrumsAt(when, beat[0]);
     var chords = beat[1];
-    console.log(chords);
+    //console.log(chords);
     var N = 4 * 60 / bpm;
     for (var i = 0; i < chords.length; i++) {
       var chord = chords[i];
-      console.log(i,chord);
+      //console.log(i,chord);
       var instrument = chord[0];
       var pitches = chord[1];
       var duration = chord[2];
@@ -362,7 +362,7 @@ class MIDISounds extends React.Component {
           if (kind === 3) {
             this.playSnapAt(when, instrument, pitches, duration * N);
           } else {
-            console.log(when, instrument, pitches, duration * N);
+            //console.log(when, instrument, pitches, duration * N);
             this.playChordAt(when, instrument, pitches, duration * N);
           }
         }

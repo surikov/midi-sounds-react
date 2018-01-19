@@ -349,14 +349,16 @@ class App extends Component {
 		//}
 	}
 	testChPly(){
+		var bt=[[],[[this.state.selInsNum,_Em,1/8]]];
 		var data=[
-			[[],[[bass,[S6,S5+2],1/8]]]
+			bt
 			,[[],[]]
 		];
-		this.midiSounds.playBeatAt(0,[[],[[bass,[S6,S5+2],1/8]]],120);
+		this.midiSounds.playBeatAt(0,bt,120);
+		this.midiSounds.startPlayLoop(data, 123, 1/8);
 	}
 	testChStp(){
-
+		this.midiSounds.stopPlayLoop();
 	}
 	/*onPropertiesChanged(){
 		console.log('onPropertiesChanged',this.midiSounds.getProperties());
