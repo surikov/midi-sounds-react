@@ -61,7 +61,7 @@ class MIDISounds extends React.Component {
     this.refreshCache();
     var r = (
       <div className="MIDISounds">
-        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds v7</button>
+        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds v8</button>
         <ReactModal isOpen={this.state.showModal} contentLabel="Minimal Modal Example" >
           <div style={STYLE.MIDISoundsInfo}>
             <p>Equalizer <button onClick={this.onSetPower.bind(this)}>Power</button>

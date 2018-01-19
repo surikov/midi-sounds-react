@@ -282,25 +282,32 @@ class App extends Component {
 		//this.midiSounds.setDrumVolume(pedal,0.1);
 		//this.midiSounds.setDrumVolume(snare,0.1);
 		//bass=this.state.selInsNum;
-		this.bpm = 120;
-		this.N = 4 * 60 / this.bpm;
-		this.pieceLen = 4 * this.N;
-		this.beatLen=1/16 * this.N;
+		
+		
 		if (this.started) {
 			console.log('started already');
 		} else {
 			console.log('start now');
+			this.bpm = 120;
+			this.N = 4 * 60 / this.bpm;
+			this.beatLen=1/16 * this.N;
+			//this.pieceLen = 4 * this.N;
+			this.nextBeat=0;
 			this.started = true;
-			this.startTime = this.midiSounds.contextTime() + 0.1;
+			this.startTime = this.midiSounds.contextTime() ;
+			//console.log(this.beatLen,this.N);
 			this.nextPiece();
-			this.startTime = this.startTime + this.pieceLen;
+			this.startTime = this.startTime + this.beatLen;//this.pieceLen;
 			var me=this;
+			//console.log('contextTime',me.midiSounds.contextTime(),'startTime',this.startTime,'beatLen',this.beatLen);
 			this.interval=setInterval(function () {
-				if (me.midiSounds.contextTime() > me.startTime - 1 / 4 * me.N) {
+				//console.log('.contextTime()',me.midiSounds.contextTime());
+				if (me.midiSounds.contextTime() > me.startTime - me.beatLen/3) {
+					
 					me.nextPiece();
-					me.startTime = me.startTime + me.pieceLen;
+					me.startTime = me.startTime + me.beatLen;//me.pieceLen;
 				}
-			}, 20);
+			}, me.beatLen/4);
 		}
 	}
 	testStp(){
@@ -309,11 +316,15 @@ class App extends Component {
 		this.midiSounds.player.cancelQueue(this.midiSounds.audioContext);
 	}
 	nextPiece() {
-		console.log('nextPiece',this.startTime);
-		for (var n = 0; n < notes.length; n++) {
-			var beat = notes[n];
+		
+		//for (var n = 0; n < notes.length; n++) {
+			if(this.nextBeat>=notes.length){
+				this.nextBeat=0;
+			}
+			var beat = notes[this.nextBeat];
+			//console.log('nextPiece',this.startTime ,  this.beatLen,beat[0]);
 			//var drumsArr=beat[i][0];
-			this.midiSounds.playDrumsAt(this.startTime + n * this.beatLen,beat[0]);
+			this.midiSounds.playDrumsAt(this.startTime +  this.beatLen,beat[0]);
 			var insArr=beat[1];
 			for(var i=0;i<insArr.length;i++){
 				var noteArr=insArr[i];
@@ -321,9 +332,10 @@ class App extends Component {
 				/*if(synth==num){
 					num=this.state.selInsNum;
 				}*/
-				this.midiSounds.playChordAt(this.startTime + n * this.beatLen,num,[noteArr[1]],noteArr[2]*this.N);
+				this.midiSounds.playChordAt(this.startTime +  this.beatLen,num,[noteArr[1]],noteArr[2]*this.N);
 				//console.log(noteArr[0],[noteArr[1],noteArr[2]]);
 			}
+			this.nextBeat++;
 			//console.log(n,beat);
 			//for (var d = 0; d < drumsArr.length; d++) {
 				//if (beat[i]) {
@@ -334,7 +346,7 @@ class App extends Component {
 
 				//}
 			//}
-		}
+		//}
 	}
 	/*onPropertiesChanged(){
 		console.log('onPropertiesChanged',this.midiSounds.getProperties());
