@@ -239,7 +239,7 @@ class MIDISounds extends React.Component {
     var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
     this.audioContext = new AudioContextFunc();
     this.destination = this.audioContext.destination;
-    this.convolverValue = 0.5;
+    //this.convolverValue = 0.5;
     /*if (this.isMobile()) {
       this.convolverValue = 0.0;
     }*/
@@ -247,13 +247,17 @@ class MIDISounds extends React.Component {
     this.equalizer = this.player.createChannel(this.audioContext);
 
     this.output = this.audioContext.createGain();
-    if (this.convolverValue > 0) {
+    this.echo = this.player.createReverberator(this.audioContext);
+    this.echo.wet.gain.setTargetAtTime(this.state.echo, 0, 0.0001);
+    this.echo.output.connect(this.output);
+    this.equalizer.output.connect(this.echo.input);
+    /*if (this.convolverValue > 0) {
       this.echo = this.player.createReverberator(this.audioContext);
       this.echo.output.connect(this.output);
       this.equalizer.output.connect(this.echo.input);
     } else {
       this.equalizer.output.connect(this.output);
-    }
+    }*/
     this.output.connect(this.destination);
     this.volumesInstrument = [];
     this.volumesDrum = [];
@@ -499,7 +503,7 @@ class MIDISounds extends React.Component {
     this.volumesDrum[drum] = volume;
   }
   setEchoLevel(value) {
-    if (this.convolverValue > 0 && value === 0) {
+    /*if (this.convolverValue > 0 && value === 0) {
       console.log('echo off');
       if (this.echo) {
         this.output.disconnect();
@@ -521,7 +525,8 @@ class MIDISounds extends React.Component {
         this.echo.output.connect(this.output);
       }
     }
-    this.convolverValue = value;
+    this.convolverValue = value;*/
+    this.echo.wet.gain.setTargetAtTime(value, 0, 0.0001);
     this.setState({
       echo: value
     });
