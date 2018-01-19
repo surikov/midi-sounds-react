@@ -61,7 +61,7 @@ class MIDISounds extends React.Component {
     this.refreshCache();
     var r = (
       <div className="MIDISounds">
-        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds111</button>
+        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds112</button>
         <ReactModal isOpen={this.state.showModal} contentLabel="Minimal Modal Example" >
           <div style={STYLE.MIDISoundsInfo}>
             <p>Equalizer <button onClick={this.onSetPower.bind(this)}>Power</button>
@@ -86,7 +86,7 @@ class MIDISounds extends React.Component {
             <p>MIDI input: initializing</p>
             <p style={STYLE.MIDISoundsClose}>
               &nbsp;<br />
-              <button onClick={this.resetAudio.bind(this)}>Reset</button>
+              
               <button onClick={this.handleCloseModal}>Close</button>
             </p>
           </div>
@@ -218,9 +218,10 @@ class MIDISounds extends React.Component {
     this.target = this.audioContext.destination;
     this.player = new WebAudioFontPlayer();
     this.equalizer = this.player.createChannel(this.audioContext);
-    this.echo = this.player.createReverberator(this.audioContext);
-    this.echo.output.connect(this.target);
-    this.equalizer.output.connect(this.echo.input);
+    //this.echo = this.player.createReverberator(this.audioContext);
+    //this.echo.output.connect(this.target);
+    //this.equalizer.output.connect(this.echo.input);
+    this.equalizer.output.connect(this.target);
     this.volumesInstrument = [];
     this.volumesDrum = [];
     this.midiNotes = [];
