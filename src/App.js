@@ -348,6 +348,16 @@ class App extends Component {
 			//}
 		//}
 	}
+	testChPly(){
+		var data=[
+			[[],[[bass,[S6,S5+2],1/8]]]
+			,[[],[]]
+		];
+		this.midiSounds.playBeatAt(0,[[],[[bass,[S6,S5+2],1/8]]],120);
+	}
+	testChStp(){
+
+	}
 	/*onPropertiesChanged(){
 		console.log('onPropertiesChanged',this.midiSounds.getProperties());
 		this.setState({masterVolume:this.midiSounds.getProperties().master})
@@ -447,6 +457,11 @@ class App extends Component {
 					<br />Bass guitar <input type='range' value={this.state.volBass} min={0.0} max={1.0} step={0.1} onChange={this.onChangeTrackBass.bind(this)} />
 					<br />Orchestra Hit <input type='range' value={this.state.volHit} min={0.0} max={1.0} step={0.1} onChange={this.onChangeTrackHit.bind(this)} />
 					<br />Synth strings <input type='range' value={this.state.volSynth} min={0.0} max={1.0} step={0.1} onChange={this.onChangeTrackSynth.bind(this)} />
+				</p>
+				<h2>Chrd</h2>
+				<p>
+					<button type="button" onClick={this.testChPly.bind(this)} >P</button>
+					<button type="button" onClick={this.testChStp.bind(this)} >S</button>
 				</p>
 			</div>
 		);

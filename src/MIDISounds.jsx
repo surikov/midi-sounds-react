@@ -61,7 +61,7 @@ class MIDISounds extends React.Component {
     this.refreshCache();
     var r = (
       <div className="MIDISounds">
-        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds v8</button>
+        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds</button>
         <ReactModal isOpen={this.state.showModal} contentLabel="Minimal Modal Example" >
           <div style={STYLE.MIDISoundsInfo}>
             <p>Equalizer <button onClick={this.onSetPower.bind(this)}>Power</button>
@@ -94,7 +94,7 @@ class MIDISounds extends React.Component {
     );
     return r;
   }
-  contextTime(){
+  contextTime() {
     return this.audioContext.currentTime;
   }
   onSetNone() {
@@ -208,10 +208,10 @@ class MIDISounds extends React.Component {
   handleCloseModal() {
     this.setState({ showModal: false });
   }
-  setDestination(audioNode) {
+  /*setDestination(audioNode) {
 
-  }
-  isMobile() {
+  }*/
+  /*isMobile() {
     console.log('navigator.userAgent', navigator.userAgent);
     if (navigator.userAgent.match(/Android/i)
       || navigator.userAgent.match(/webOS/i)
@@ -228,7 +228,7 @@ class MIDISounds extends React.Component {
       console.log('desktop');
       return false;
     }
-  }
+  }*/
   initAudio() {
     console.log('initAudio M♩D♩Sounds');
     if (this.player) {
@@ -240,9 +240,9 @@ class MIDISounds extends React.Component {
     this.audioContext = new AudioContextFunc();
     this.destination = this.audioContext.destination;
     this.convolverValue = 0.5;
-    if (this.isMobile()) {
+    /*if (this.isMobile()) {
       this.convolverValue = 0.0;
-    }
+    }*/
     this.player = new WebAudioFontPlayer();
     this.equalizer = this.player.createChannel(this.audioContext);
 
@@ -309,6 +309,65 @@ class MIDISounds extends React.Component {
       return this.volumesDrum[drum];
     }
     return 1;
+  }
+  startPlayLoop(beats, bpm, density) {
+    this.stopPlayLoop();
+    this.loopStarted = true;
+    var nextLoopTime = this.contextTime();
+    var wholeNoteDuration = 4 * 60 / bpm;
+    var beatIndex = 0;
+    this.playBeatAt(nextLoopTime, beats[beatIndex], bpm);
+    var me = this;
+    this.loopIntervalID = setInterval(function () {
+      if (me.contextTime() > nextLoopTime - density * wholeNoteDuration / 2) {
+        this.playBeatAt(nextLoopTime, beats[beatIndex], bpm);
+        nextLoopTime = nextLoopTime + density * wholeNoteDuration;
+        beatIndex++;
+        if (beatIndex >= beats.length) {
+          beatIndex = 0;
+        }
+      }
+    }, density * wholeNoteDuration / 3);
+  }
+  stopPlayLoop() {
+    this.loopStarted = false;
+    clearInterval(this.loopIntervalID);
+    this.cancelQueue();
+  }
+  cancelQueue() {
+    this.player.cancelQueue(this.audioContext);
+  }
+  playBeatAt(when, beat, bpm) {
+    //console.log(when, beat, bpm);
+    this.playDrumsAt(when, beat[0]);
+    var chords = beat[1];
+    console.log(chords);
+    var N = 4 * 60 / bpm;
+    for (var i = 0; i < chords.length; i++) {
+      var chord = chords[i];
+      console.log(i,chord);
+      var instrument = chord[0];
+      var pitches = chord[1];
+      var duration = chord[2];
+      var kind = 0;
+      if (chord.length > 3) {
+        kind = chord[3];
+      }
+      if (kind === 1) {
+        this.playStrumDownAt(when, instrument, pitches, duration * N);
+      } else {
+        if (kind === 2) {
+          this.playStrumUpAt(when, instrument, pitches, duration * N);
+        } else {
+          if (kind === 3) {
+            this.playSnapAt(when, instrument, pitches, duration * N);
+          } else {
+            console.log(when, instrument, pitches, duration * N);
+            this.playChordAt(when, instrument, pitches, duration * N);
+          }
+        }
+      }
+    }
   }
   playChordAt(when, instrument, pitches, duration) {
     //console.log('playChordAt', when, instrument, pitches, duration);
@@ -438,7 +497,7 @@ class MIDISounds extends React.Component {
     this.volumesDrum[drum] = volume;
   }
   setEchoLevel(value) {
-    if (this.convolverValue > 0 && value == 0) {
+    if (this.convolverValue > 0 && value === 0) {
       console.log('echo off');
       if (this.echo) {
         this.output.disconnect();
@@ -449,7 +508,7 @@ class MIDISounds extends React.Component {
         this.equalizer.output.connect(this.output);
       }
     } else {
-      if (this.convolverValue == 0 && value > 0) {
+      if (this.convolverValue === 0 && value > 0) {
         console.log('echo on');
         if (!(this.echo)) {
           this.echo = this.player.createReverberator(this.audioContext);
