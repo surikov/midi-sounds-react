@@ -61,7 +61,7 @@ class MIDISounds extends React.Component {
     this.refreshCache();
     var r = (
       <div className="MIDISounds">
-        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds</button>
+        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds111</button>
         <ReactModal isOpen={this.state.showModal} contentLabel="Minimal Modal Example" >
           <div style={STYLE.MIDISoundsInfo}>
             <p>Equalizer <button onClick={this.onSetPower.bind(this)}>Power</button>
@@ -277,8 +277,10 @@ class MIDISounds extends React.Component {
     return 1;
   }
   playChordAt(when, instrument, pitches, duration) {
-    var info = this.player.loader.instrumentInfo(instrument);
+    console.log('playChordAt',when, instrument, pitches, duration);
+    var info = this.player.loader.instrumentInfo(instrument);    
     if (window[info.variable]) {
+      console.log(this.audioContext, this.equalizer.input, window[info.variable], when, pitches, duration, this.volumeInstrumentAdjust(instrument));
       this.player.queueChord(this.audioContext, this.equalizer.input, window[info.variable], when, pitches, duration, this.volumeInstrumentAdjust(instrument));
     } else {
       this.cacheInstrument(instrument);
