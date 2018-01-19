@@ -61,7 +61,7 @@ class MIDISounds extends React.Component {
     this.refreshCache();
     var r = (
       <div className="MIDISounds">
-        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds115</button>
+        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds 6</button>
         <ReactModal isOpen={this.state.showModal} contentLabel="Minimal Modal Example" >
           <div style={STYLE.MIDISoundsInfo}>
             <p>Equalizer <button onClick={this.onSetPower.bind(this)}>Power</button>
@@ -83,7 +83,6 @@ class MIDISounds extends React.Component {
             </p>
             <p>Master volume <br /><input type='range' value={this.state.master} min={0.0} max={1.5} step={0.1} style={STYLE.MIDISoundsVl} onChange={this.onChangeMaster.bind(this)} /></p>
             <p>Echo level <br /><input type='range' style={STYLE.MIDISoundsVl} value={this.state.echo} min={0.0} max={1.5} step={0.1} onChange={this.onChangeEcho.bind(this)} /></p>
-            <p>MIDI input: initializing</p>
             <p style={STYLE.MIDISoundsClose}>
               &nbsp;<br />
 
