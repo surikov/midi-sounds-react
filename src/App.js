@@ -349,7 +349,7 @@ class App extends Component {
 		//}
 	}
 	testChPly(){
-		var guitar=this.state.selInsNum;
+		var guitar=269;
 		var bt=[[],[[this.state.selInsNum,_Em,1/4,1]]];
 		var data=[
 			 [[],[[guitar,[S6+1,S5+3,S4+3],3/16,1]]]
