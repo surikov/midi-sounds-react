@@ -201,29 +201,29 @@ class App extends Component {
 		this.midiSounds.playSnapNow(this.state.selInsNum, _Em, 2.5);
 	}
 	playCurStrings() {
-		this.midiSounds.playChordAt(this.midiSounds.audioContext.currentTime + 0.5 * 0, this.state.selInsNum, [S6], 1);
-		this.midiSounds.playChordAt(this.midiSounds.audioContext.currentTime + 0.5 * 1, this.state.selInsNum, [S5], 1);
-		this.midiSounds.playChordAt(this.midiSounds.audioContext.currentTime + 0.5 * 2, this.state.selInsNum, [S4], 1);
-		this.midiSounds.playChordAt(this.midiSounds.audioContext.currentTime + 0.5 * 3, this.state.selInsNum, [S3], 1);
-		this.midiSounds.playChordAt(this.midiSounds.audioContext.currentTime + 0.5 * 4, this.state.selInsNum, [S2], 1);
-		this.midiSounds.playChordAt(this.midiSounds.audioContext.currentTime + 0.5 * 5, this.state.selInsNum, [S1], 1);
+		this.midiSounds.playChordAt(this.midiSounds.contextTime() + 0.5 * 0, this.state.selInsNum, [S6], 1);
+		this.midiSounds.playChordAt(this.midiSounds.contextTime() + 0.5 * 1, this.state.selInsNum, [S5], 1);
+		this.midiSounds.playChordAt(this.midiSounds.contextTime() + 0.5 * 2, this.state.selInsNum, [S4], 1);
+		this.midiSounds.playChordAt(this.midiSounds.contextTime() + 0.5 * 3, this.state.selInsNum, [S3], 1);
+		this.midiSounds.playChordAt(this.midiSounds.contextTime() + 0.5 * 4, this.state.selInsNum, [S2], 1);
+		this.midiSounds.playChordAt(this.midiSounds.contextTime() + 0.5 * 5, this.state.selInsNum, [S1], 1);
 
 	}
 	playCurBass() {
-		this.midiSounds.playChordAt(this.midiSounds.audioContext.currentTime + 0.5 * 0, this.state.selInsNum, [S6 - O], 1);
-		this.midiSounds.playChordAt(this.midiSounds.audioContext.currentTime + 0.5 * 1, this.state.selInsNum, [S5 - O], 1);
-		this.midiSounds.playChordAt(this.midiSounds.audioContext.currentTime + 0.5 * 2, this.state.selInsNum, [S4 - O], 1);
-		this.midiSounds.playChordAt(this.midiSounds.audioContext.currentTime + 0.5 * 3, this.state.selInsNum, [S3 - O], 1);
+		this.midiSounds.playChordAt(this.midiSounds.contextTime() + 0.5 * 0, this.state.selInsNum, [S6 - O], 1);
+		this.midiSounds.playChordAt(this.midiSounds.contextTime() + 0.5 * 1, this.state.selInsNum, [S5 - O], 1);
+		this.midiSounds.playChordAt(this.midiSounds.contextTime() + 0.5 * 2, this.state.selInsNum, [S4 - O], 1);
+		this.midiSounds.playChordAt(this.midiSounds.contextTime() + 0.5 * 3, this.state.selInsNum, [S3 - O], 1);
 
 	}
 	playDrSingle() {
 		this.midiSounds.playDrumsNow([this.state.selDrNum]);
 	}
 	playDrTr() {
-		this.midiSounds.playDrumsAt(this.midiSounds.audioContext.currentTime + 0.15 * 0,[this.state.selDrNum]);
-		this.midiSounds.playDrumsAt(this.midiSounds.audioContext.currentTime + 0.15 * 2,[this.state.selDrNum]);
-		this.midiSounds.playDrumsAt(this.midiSounds.audioContext.currentTime + 0.15 * 3,[this.state.selDrNum]);
-		this.midiSounds.playDrumsAt(this.midiSounds.audioContext.currentTime + 0.15 * 4,[this.state.selDrNum]);
+		this.midiSounds.playDrumsAt(this.midiSounds.contextTime() + 0.15 * 0,[this.state.selDrNum]);
+		this.midiSounds.playDrumsAt(this.midiSounds.contextTime() + 0.15 * 2,[this.state.selDrNum]);
+		this.midiSounds.playDrumsAt(this.midiSounds.contextTime() + 0.15 * 3,[this.state.selDrNum]);
+		this.midiSounds.playDrumsAt(this.midiSounds.contextTime() + 0.15 * 4,[this.state.selDrNum]);
 	}
 	changeMasterQuiet() {
 		this.midiSounds.setMasterVolume(0.3);
@@ -291,12 +291,12 @@ class App extends Component {
 		} else {
 			console.log('start now');
 			this.started = true;
-			this.startTime = this.midiSounds.audioContext.currentTime + 0.1;
+			this.startTime = this.midiSounds.contextTime() + 0.1;
 			this.nextPiece();
 			this.startTime = this.startTime + this.pieceLen;
 			var me=this;
 			this.interval=setInterval(function () {
-				if (me.midiSounds.audioContext.currentTime > me.startTime - 1 / 4 * me.N) {
+				if (me.midiSounds.contextTime() > me.startTime - 1 / 4 * me.N) {
 					me.nextPiece();
 					me.startTime = me.startTime + me.pieceLen;
 				}
@@ -309,6 +309,7 @@ class App extends Component {
 		this.midiSounds.player.cancelQueue(this.midiSounds.audioContext);
 	}
 	nextPiece() {
+		console.log('nextPiece',this.startTime);
 		for (var n = 0; n < notes.length; n++) {
 			var beat = notes[n];
 			//var drumsArr=beat[i][0];
