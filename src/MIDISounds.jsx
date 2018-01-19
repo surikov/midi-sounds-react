@@ -61,7 +61,7 @@ class MIDISounds extends React.Component {
     this.refreshCache();
     var r = (
       <div className="MIDISounds">
-        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds113</button>
+        <button className="MIDISounds" onClick={this.handleOpenModal}>M♩D♩Sounds114</button>
         <ReactModal isOpen={this.state.showModal} contentLabel="Minimal Modal Example" >
           <div style={STYLE.MIDISoundsInfo}>
             <p>Equalizer <button onClick={this.onSetPower.bind(this)}>Power</button>
@@ -210,6 +210,7 @@ class MIDISounds extends React.Component {
 
   }
   isMobile() {
+    console.log('navigator.userAgent', navigator.userAgent);
     if (navigator.userAgent.match(/Android/i)
       || navigator.userAgent.match(/webOS/i)
       || navigator.userAgent.match(/iPhone/i)
@@ -218,9 +219,11 @@ class MIDISounds extends React.Component {
       || navigator.userAgent.match(/BlackBerry/i)
       || navigator.userAgent.match(/Windows Phone/i)
     ) {
+      console.log('mobile');
       return true;
     }
-    else {
+    else {      
+      console.log('desktop');
       return false;
     }
   }
@@ -240,11 +243,12 @@ class MIDISounds extends React.Component {
     }
     this.player = new WebAudioFontPlayer();
     this.equalizer = this.player.createChannel(this.audioContext);
-    this.echo = this.player.createReverberator(this.audioContext);
+
     this.output = this.audioContext.createGain();
     if (this.convolverValue > 0) {
-      this.equalizer.output.connect(this.echo.input);
+      this.echo = this.player.createReverberator(this.audioContext);
       this.echo.output.connect(this.output);
+      this.equalizer.output.connect(this.echo.input);
     } else {
       this.equalizer.output.connect(this.output);
     }
@@ -434,15 +438,20 @@ class MIDISounds extends React.Component {
   setEchoLevel(value) {
     if (this.convolverValue > 0 && value == 0) {
       console.log('echo off');
-      this.output.disconnect();
-      this.echo.output.disconnect();
-      this.echo.dry.connect(this.echo.output);
-      this.echo.convolver.connect(this.echo.output);
-      this.output.connect(this.destination);
-      this.equalizer.output.connect(this.output);
+      if (this.echo) {
+        this.output.disconnect();
+        this.echo.output.disconnect();
+        this.echo.dry.connect(this.echo.output);
+        this.echo.convolver.connect(this.echo.output);
+        this.output.connect(this.destination);
+        this.equalizer.output.connect(this.output);
+      }
     } else {
       if (this.convolverValue == 0 && value > 0) {
         console.log('echo on');
+        if (!(this.echo)) {
+          this.echo = this.player.createReverberator(this.audioContext);
+        }
         this.echo.wet.gain.setTargetAtTime(value, 0, 0.0001);
         this.output.disconnect();
         this.output.connect(this.destination);
