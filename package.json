@@ -1,19 +1,51 @@
 {
   "name": "midi-sounds-react",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.1.2",
+  "description": "Sounds for musical applications.",
+  "keywords": [
+    "audio",
+    "guitar",
+    "piano",
+    "music",
+    "drums",
+    "beat",
+    "sound",
+    "synthesizer",
+    "wavetable",
+    "midi",
+    "soundfont",
+    "synth",
+    "mixer",
+    "distortion",
+    "microtonal"
+  ],
   "homepage": "https://surikov.github.io/midi-sounds-react/examples",
+  "main": "build/index.js",
+  "peerDependencies": {
+    "react": "^15.5.4"
+  },
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-modal": "^3.1.10",
-    "react-scripts": "1.0.17",
-    "webaudiofont": "^2.5.0"
+    "webaudiofont": "^2.5.0",
+    "webpack": "^2.6.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch",
+    "build": "webpack"
+  },
+  "author": {
+    "name": "Sergey Surikov",
+    "email": "sss1024@gmail.com"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.5.1"
   }
 }
