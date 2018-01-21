@@ -1,6 +1,6 @@
 {
   "name": "midi-sounds-react",
-  "version": "1.1.2",
+  "version": "1.2.4",
   "description": "Sounds for musical applications.",
   "keywords": [
     "audio",
@@ -19,7 +19,7 @@
     "distortion",
     "microtonal"
   ],
-  "homepage": "https://surikov.github.io/midi-sounds-react/examples",
+  "homepage": "https://surikov.github.io/midi-sounds-react/",
   "main": "build/index.js",
   "peerDependencies": {
     "react": "^15.5.4"
