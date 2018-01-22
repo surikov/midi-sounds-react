@@ -57,6 +57,7 @@ const STYLE = {
 class MIDISounds extends React.Component {
   constructor(props) {
     super(props);
+	console.log('MIDISounds v1.2.5');
     this.state = {
       showModal: false
       , appElementName: this.props.appElementName
@@ -660,7 +661,7 @@ class MIDISounds extends React.Component {
         me.playBeatAt(nextLoopTime, beats[beatIndex], bpm);
         nextLoopTime = nextLoopTime + density * wholeNoteDuration;
       }
-    }, density * wholeNoteDuration / 3);
+    }, 22);
   }
   stopPlayLoop() {
     this.loopStarted = false;
