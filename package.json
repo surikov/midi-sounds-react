@@ -1,6 +1,6 @@
 {
   "name": "midi-sounds-react",
-  "version": "1.2.8",
+  "version": "1.2.34",
   "description": "Sounds for React musical applications.",
   "keywords": [
     "audio",
@@ -25,13 +25,16 @@
 	  "type": "git",
 	  "url": "https://github.com/surikov/midi-sounds-react.git"
 	},
-	"license" : "MIT",
+  "license" : "MIT",
+  "peerDependencies": {
+    "react": "^16.2.0"
+  },
   "dependencies": {
     "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+	"react-dom": "^16.2.0",
+    "webpack": "^2.6.1",
     "react-modal": "^3.1.10",
-    "webaudiofont": "^2.5.0",
-    "webpack": "^2.6.1"
+    "webaudiofont": "^2.5.0"
   },
   "scripts": {
     "test": "echo \"No test specified\" && exit 1",

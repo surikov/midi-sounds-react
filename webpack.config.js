@@ -1,15 +1,15 @@
 var path = require('path');
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/midisounds.jsx',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'index.js',
+    filename: 'midisoundswebpack.js',
     libraryTarget: 'commonjs2'
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx$/,
         include: path.resolve(__dirname, 'src'),
         exclude: /(node_modules|bower_components|build)/,
         use: {
