@@ -1,8 +1,10 @@
 {
   "name": "midi-sounds-react",
-  "version": "1.2.39",
+  "version": "1.2.44",
   "description": "Sounds for React musical applications.",
   "keywords": [
+    "react",
+    "react-component",
     "audio",
     "guitar",
     "piano",

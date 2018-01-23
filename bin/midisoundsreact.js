@@ -66,7 +66,9 @@ var STYLE = {
   eqOn: {
     backgroundColor: 'rgb(111,145,124)',
     width: '0.5cm',
-    height: '0.2cm'
+    height: '0.2cm',
+    fontSize: '30%',
+    color: '#ffffff'
   },
   eqOff: {
     backgroundColor: 'rgb(224,224,224)',
@@ -83,7 +85,7 @@ var MIDISounds = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (MIDISounds.__proto__ || Object.getPrototypeOf(MIDISounds)).call(this, props));
 
-    console.log('MIDISounds v1.2.39');
+    console.log('MIDISounds v1.2.44');
     _this.state = {
       showModal: false,
       appElementName: _this.props.appElementName,
@@ -360,25 +362,25 @@ var MIDISounds = function (_React$Component) {
           return _this2.setBand16k(1);
         } })), _react2.default.createElement('tr', null, _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
           return _this2.setBand32(0);
-        } }), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
+        } }, '32'), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
           return _this2.setBand64(0);
-        } }), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
+        } }, '64'), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
           return _this2.setBand128(0);
-        } }), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
+        } }, '128'), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
           return _this2.setBand256(0);
-        } }), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
+        } }, '256'), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
           return _this2.setBand512(0);
-        } }), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
+        } }, '512'), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
           return _this2.setBand1k(0);
-        } }), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
+        } }, '1k'), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
           return _this2.setBand2k(0);
-        } }), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
+        } }, '2k'), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
           return _this2.setBand4k(0);
-        } }), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
+        } }, '4k'), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
           return _this2.setBand8k(0);
-        } }), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
+        } }, '8k'), _react2.default.createElement('td', { style: STYLE.eqOn, onClick: function onClick(e) {
           return _this2.setBand16k(0);
-        } })), _react2.default.createElement('tr', null, _react2.default.createElement('td', { style: this.state.q32 < -0 ? STYLE.eqOn : STYLE.eqOff, onClick: function onClick(e) {
+        } }, '16k')), _react2.default.createElement('tr', null, _react2.default.createElement('td', { style: this.state.q32 < -0 ? STYLE.eqOn : STYLE.eqOff, onClick: function onClick(e) {
           return _this2.setBand32(-1);
         } }), _react2.default.createElement('td', { style: this.state.q64 < -0 ? STYLE.eqOn : STYLE.eqOff, onClick: function onClick(e) {
           return _this2.setBand64(-1);
@@ -578,7 +580,7 @@ var MIDISounds = function (_React$Component) {
           return _this2.setBand8k(-10);
         } }), _react2.default.createElement('td', { style: this.state.q16k < -9 ? STYLE.eqOn : STYLE.eqOff, onClick: function onClick(e) {
           return _this2.setBand16k(-10);
-        } })))), _react2.default.createElement('p', null, _react2.default.createElement('button', { onClick: this.onSetPower.bind(this) }, 'Power'), _react2.default.createElement('button', { onClick: this.onSetDance.bind(this) }, 'Dance'), _react2.default.createElement('button', { onClick: this.onSetNone.bind(this) }, 'Flat'), _react2.default.createElement('button', { onClick: this.handleCloseModal }, 'Close')))));
+        } })))), _react2.default.createElement('p', null, _react2.default.createElement('button', { onClick: this.onSetPower.bind(this) }, 'Power'), _react2.default.createElement('button', { onClick: this.onSetDance.bind(this) }, 'Dance'), _react2.default.createElement('button', { onClick: this.onSetNone.bind(this) }, 'Flat'), '\xA0\xA0\xA0', _react2.default.createElement('button', { onClick: this.handleCloseModal }, 'Close')))));
       return r;
     }
   }, {
@@ -821,21 +823,25 @@ var MIDISounds = function (_React$Component) {
     }
   }, {
     key: 'startPlayLoop',
-    value: function startPlayLoop(beats, bpm, density) {
+    value: function startPlayLoop(beats, bpm, density, fromBeat) {
       this.stopPlayLoop();
       this.loopStarted = true;
       var wholeNoteDuration = 4 * 60 / bpm;
-      this.playBeatAt(this.contextTime(), beats[0], bpm);
+      if (fromBeat < beats.length) {
+        this.beatIndex = fromBeat;
+      } else {
+        this.beatIndex = 0;
+      }
+      this.playBeatAt(this.contextTime(), beats[this.beatIndex], bpm);
       var nextLoopTime = this.contextTime() + density * wholeNoteDuration;
-      var beatIndex = 0;
       var me = this;
       this.loopIntervalID = setInterval(function () {
-        if (me.contextTime() > nextLoopTime - density * wholeNoteDuration / 2) {
-          beatIndex++;
-          if (beatIndex >= beats.length) {
-            beatIndex = 0;
+        if (me.contextTime() > nextLoopTime - density * wholeNoteDuration) {
+          me.beatIndex++;
+          if (me.beatIndex >= beats.length) {
+            me.beatIndex = 0;
           }
-          me.playBeatAt(nextLoopTime, beats[beatIndex], bpm);
+          me.playBeatAt(nextLoopTime, beats[me.beatIndex], bpm);
           nextLoopTime = nextLoopTime + density * wholeNoteDuration;
         }
       }, 22);

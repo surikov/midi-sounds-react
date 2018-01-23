@@ -47,6 +47,8 @@ const STYLE = {
 				backgroundColor: 'rgb(111,145,124)'
 				,width:'0.5cm'
 				,height:'0.2cm'
+				,fontSize:'30%'
+				,color: '#ffffff'
 			}
 	,eqOff :{
 				backgroundColor: 'rgb(224,224,224)'
@@ -57,7 +59,7 @@ const STYLE = {
 class MIDISounds extends React.Component {
   constructor(props) {
     super(props);
-	console.log('MIDISounds v1.2.39');
+	console.log('MIDISounds v1.2.44');
     this.state = {
       showModal: false
       , appElementName: this.props.appElementName
@@ -315,16 +317,16 @@ class MIDISounds extends React.Component {
 					</tr>
 				
 					<tr>
-						<td style={STYLE.eqOn} onClick={(e)=>this.setBand32(0)}></td>
-						<td style={STYLE.eqOn} onClick={(e)=>this.setBand64(0)}></td>
-						<td style={STYLE.eqOn} onClick={(e)=>this.setBand128(0)}></td>
-						<td style={STYLE.eqOn} onClick={(e)=>this.setBand256(0)}></td>
-						<td style={STYLE.eqOn} onClick={(e)=>this.setBand512(0)}></td>
-						<td style={STYLE.eqOn} onClick={(e)=>this.setBand1k(0)}></td>
-						<td style={STYLE.eqOn} onClick={(e)=>this.setBand2k(0)}></td>
-						<td style={STYLE.eqOn} onClick={(e)=>this.setBand4k(0)}></td>
-						<td style={STYLE.eqOn} onClick={(e)=>this.setBand8k(0)}></td>
-						<td style={STYLE.eqOn} onClick={(e)=>this.setBand16k(0)}></td>
+						<td style={STYLE.eqOn} onClick={(e)=>this.setBand32(0)}>32</td>
+						<td style={STYLE.eqOn} onClick={(e)=>this.setBand64(0)}>64</td>
+						<td style={STYLE.eqOn} onClick={(e)=>this.setBand128(0)}>128</td>
+						<td style={STYLE.eqOn} onClick={(e)=>this.setBand256(0)}>256</td>
+						<td style={STYLE.eqOn} onClick={(e)=>this.setBand512(0)}>512</td>
+						<td style={STYLE.eqOn} onClick={(e)=>this.setBand1k(0)}>1k</td>
+						<td style={STYLE.eqOn} onClick={(e)=>this.setBand2k(0)}>2k</td>
+						<td style={STYLE.eqOn} onClick={(e)=>this.setBand4k(0)}>4k</td>
+						<td style={STYLE.eqOn} onClick={(e)=>this.setBand8k(0)}>8k</td>
+						<td style={STYLE.eqOn} onClick={(e)=>this.setBand16k(0)}>16k</td>
 					</tr>
 					<tr>
 						<td style={this.state.q32<-0?STYLE.eqOn:STYLE.eqOff} onClick={(e)=>this.setBand32(-1)}></td>
@@ -453,6 +455,7 @@ class MIDISounds extends React.Component {
               <button onClick={this.onSetPower.bind(this)}>Power</button>
               <button onClick={this.onSetDance.bind(this)}>Dance</button>
               <button onClick={this.onSetNone.bind(this)}>Flat</button>
+			  &nbsp;&nbsp;&nbsp;
 			  <button onClick={this.handleCloseModal}>Close</button>
             </p>
           </div>
@@ -644,21 +647,25 @@ class MIDISounds extends React.Component {
     }
     return 1;
   }
-  startPlayLoop(beats, bpm, density) {
+  startPlayLoop(beats, bpm, density, fromBeat) {
     this.stopPlayLoop();
     this.loopStarted = true;
     var wholeNoteDuration = 4 * 60 / bpm;
-    this.playBeatAt(this.contextTime(), beats[0], bpm);
+	if(fromBeat<beats.length){
+		this.beatIndex = fromBeat;
+	}else{
+		this.beatIndex = 0;
+	} 
+    this.playBeatAt(this.contextTime(), beats[this.beatIndex], bpm);
     var nextLoopTime = this.contextTime() + density * wholeNoteDuration;
-    var beatIndex = 0;
     var me = this;
     this.loopIntervalID = setInterval(function () {
-      if (me.contextTime() > nextLoopTime - density * wholeNoteDuration / 2) {
-        beatIndex++;
-        if (beatIndex >= beats.length) {
-          beatIndex = 0;
+      if (me.contextTime() > nextLoopTime - density * wholeNoteDuration ) {
+        me.beatIndex++;
+        if (me.beatIndex >= beats.length) {
+          me.beatIndex = 0;
         }
-        me.playBeatAt(nextLoopTime, beats[beatIndex], bpm);
+        me.playBeatAt(nextLoopTime, beats[me.beatIndex], bpm);
         nextLoopTime = nextLoopTime + density * wholeNoteDuration;
       }
     }, 22);
