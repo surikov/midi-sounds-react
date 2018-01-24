@@ -24,4 +24,62 @@ Sound library for React
   - piano
 - [example 11](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example11/build)
   - independed channels
+  
+[Sources of examples](https://github.com/surikov/midi-sounds-react-examples/tree/master/examples)
 
+Dependencies package.json
+
+- "midi-sounds-react": "^1.2.45"
+
+Component
+
+- <MIDISounds ref={(ref) => (this.midiSoundsDrums = ref)} appElementName="root" instruments={[overdrive,palmMute,bassGuitar]} drums={[bassDrum,snare,hiHat,cymbal]} />
+  
+Functions
+
+- contextTime()
+- cancelQueue()
+
+Drums
+
+- cacheDrum(n)
+- setDrumVolume(drum, volume)
+- playDrumsAt(when, drums)
+- playDrumsNow(drums)
+
+Instruments
+
+- cacheInstrument(n)
+- setInstrumentVolume(instrument, volume)
+- playChordNow(instrument, pitches, duration)
+- playChordAt(when, instrument, pitches, duration)
+- playStrumUpNow(instrument, pitches, duration)
+- playStrumUpAt(when, instrument, pitches, duration)
+- playStrumDownAt(when, instrument, pitches, duration)
+- playStrumDownNow(instrument, pitches, duration)
+- playSnapNow(instrument, pitches, duration)
+- playSnapAt(when, instrument, pitches, duration)
+
+Properties
+
+- setMasterVolume(n)
+- setEchoLevel(value)
+
+Equalizer
+
+- setBand32(level)
+- setBand64(level)
+- setBand128(level)
+- setBand256(level)
+- setBand512(level)
+- setBand1k(level)
+- setBand2k(level)
+- setBand4k(level)
+- setBand8k(level)
+- setBand16k(level)
+
+Loops
+
+- playBeatAt(when, beat, bpm)
+- startPlayLoop(beats, bpm, density, fromBeat)
+- stopPlayLoop()

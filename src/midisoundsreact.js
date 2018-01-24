@@ -59,7 +59,7 @@ const STYLE = {
 class MIDISounds extends React.Component {
   constructor(props) {
     super(props);
-	console.log('MIDISounds v1.2.44');
+	console.log('MIDISounds v1.2.46');
     this.state = {
       showModal: false
       , appElementName: this.props.appElementName
