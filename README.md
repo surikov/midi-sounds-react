@@ -145,8 +145,12 @@ Use this.midiSounds.player.loader.waitLoad to wait till all instruments and drum
 
 [Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example3/build)
 
-### Delay for 
+### Play continuous note sounds
 
+Use this.midiSounds.player.queueWaveTable to start sound and return reference to envelope.
+Use envelope.cancel() to stop sound.
+
+[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example10/build)
 
 ## Functions
 
