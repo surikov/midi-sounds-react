@@ -90,7 +90,7 @@ class App extends Component {
 
 export default App;
 ```
-Main parts
+### Main parts
 
 ```js
 import MIDISounds from 'midi-sounds-react';
@@ -99,7 +99,10 @@ import MIDISounds from 'midi-sounds-react';
 - import **midi-sounds-react** component
 
 ```html
-<MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" instruments={[3]} />
+<MIDISounds 
+	ref={(ref) => (this.midiSounds = ref)} 
+	appElementName="root" instruments={[3]} 
+	/>
 ```
 
 - insert component into page
@@ -117,10 +120,15 @@ See [live example](https://surikov.github.io/midi-sounds-react-examples/examples
 ### Component parameters
 
 ```html
-<MIDISounds ref={(ref) => (this.midiSoundsDrums = ref)} appElementName="root" instruments={[111]} drums={[2,33]} />
+<MIDISounds 
+	ref={(ref) => (this.midiSounds = ref)} 
+	appElementName="root" 
+	instruments={[111]} 
+	drums={[2,33]} 
+	/>
 ```
 
-- this.midiSoundsDrums - variable to use component from code
+- this.midiSounds - variable to use component from code
 - appElementName - name of main div of application
 - instruments - array of instruments to preload
 - drums - array of drums to preload
