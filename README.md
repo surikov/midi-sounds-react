@@ -82,10 +82,7 @@ class App extends Component {
         </header>
         <p className="App-intro">Press Play to play instrument sound.</p>					
 		<p><button onClick={this.playTestInstrument.bind(this)}>Play</button></p>
-		<p>Component</p>
 		<MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" instruments={[3]} />	
-		<hr/>
-		<p>Sources: <a href={'https://www.npmjs.com/package/midi-sounds-react'}>https://www.npmjs.com/package/midi-sounds-react</a></p>
       </div>
     );
   }
@@ -95,15 +92,25 @@ export default App;
 ```
 Main parts
 
+```js
 import MIDISounds from 'midi-sounds-react';
+```
 
 - import **midi-sounds-react** component
 
+```html
+<MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" instruments={[3]} />
+```
 
+- insert component into page
 
+```js
+this.midiSounds.playChordNow(3, [60], 2.5);
+```
 
+- play sound
 
-
+See [live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example1/build), download example from [https://github.com/surikov/midi-sounds-react-examples](https://github.com/surikov/midi-sounds-react-examples).
 
 
 
