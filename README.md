@@ -1,17 +1,21 @@
-# midi-sounds-react
+# Component for [React](https://reactjs.org/).
 
-Sound library for React
+You can use 1500 digitized musical instruments and percussions from free sound library to build musical application with React framework.
+
+## Examples
 
 - [example 1](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example1/build)
-  - preload and play instrument
+  - preload and play an instrument
 - [example 2](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example2/build)
-  - preload and play drum
+  - preload and play a drum
 - [example 3](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example3/build)
-  - create list with 1300 instruments and play them
+  - selectable list of instruments
+  - load instrumen in realtime
 - [example 4](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example4/build)
-  - create list with 200 drums and play them
+  - selectable list of drums
+  - load drum in realtime
 - [example 5](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example5/build)
-  - play sequence
+  - play short musical fragments
 - [example 6](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example6/build)
   - sequencer for drums
 - [example 7](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example7/build)
