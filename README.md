@@ -149,6 +149,7 @@ componentDidMount() {
 ### Play continuous note sounds
 
 Use this.midiSounds.player.queueWaveTable to start sound and return reference to envelope.
+
 Use envelope.cancel() to stop sound.
 
 [Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example10/build)
@@ -156,6 +157,7 @@ Use envelope.cancel() to stop sound.
 ### List of drums
 
 Use this.midiSounds.player.loader.drumsKeys() to get array of drums.
+
 Use this.midiSounds.player.loader.drumInfo(i).title to get readable drum name.
 
 [Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example4/build)
@@ -163,6 +165,7 @@ Use this.midiSounds.player.loader.drumInfo(i).title to get readable drum name.
 ### List of instruments
 
 Use this.midiSounds.player.loader.instrumentKeys() to get array of drums.
+
 Use this.midiSounds.player.loader.instrumentInfo(i).title to get readable drum name.
 
 [Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example3/build)
@@ -170,6 +173,7 @@ Use this.midiSounds.player.loader.instrumentInfo(i).title to get readable drum n
 ### Load instrument
 
 Use this.midiSounds.cacheInstrument and this.midiSounds.cacheDrum to start instrument and drum loading.
+
 Use this.midiSounds.player.loader.waitLoad to wait till all instruments and drums are loaded.
 
 [Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example3/build)
@@ -214,6 +218,7 @@ Use cancelQueue()
 ### Time
 
 Use contextTime() to get current time of Audio context.
+
 How to calculate musical durations
 
 ```
@@ -228,6 +233,7 @@ var duration16th = N/16;
 - playDrumsNow(drums)
 
 when - time 
+
 drums - array of drum numbers
 
 ### Play instruments
@@ -242,16 +248,23 @@ drums - array of drum numbers
 - playSnapAt(when, instrument, pitches, duration)
 
 when - time 
+
 instrument - number of instrument
+
 pitches - array of pitches
+
 duration - durations
 
 ### Play beat
 
-- playBeatAt(when, beat, bpm)
+```
+playBeatAt(when, beat, bpm)
+```
 
 when - time
+
 beat - array of drums and chords
+
 bpm - beats per minute
 
 Example of beat array
@@ -268,21 +281,30 @@ Example of beat array
 ]
 ```
 drum1, drum2 - numbers of drums
+
 guitar, bass - numbers of instruments
+
 [S6+1,S5+3,S4+3] and [S6+1,S5+3,S4+3] - array with pitches
+
 1/4 - duration as part of full note for the bpm
+
 down - 1|2|3 for strum down, strum up or snap
 
 ### Play loop
 
+```
 startPlayLoop(beats, bpm, density, fromBeat)
+```
 
 beats - array of beat arrays
+
 bpm - beats per minute
+
 dencity - duration of row at array
+
 fromBeat - start beat number
 
-Use stopPlayLoop() to cancel play 
+Use stopPlayLoop() to cancel play.
 
 [Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example9/build)
 
