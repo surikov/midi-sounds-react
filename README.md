@@ -282,8 +282,7 @@ Example of beat array
 - guitar, bass - numbers of instruments
 - [S6+1,S5+3,S4+3] and [S6+1,S5+3,S4+3] - array with pitches
 - 1/4 - duration as part of full note for the bpm
-
-down - 1|2|3 for strum down, strum up or snap
+- down - 1|2|3 for strum down, strum up or snap
 
 ### Play loop
 
