@@ -4,8 +4,8 @@ You can use 1500 digitized musical instruments and percussions from free sound l
 
 ## Examples
 
-- [how preload and play an instrument](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example1/build)
-- [how preload and play a drum](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example2/build)
+- [how to preload and play an instrument](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example1/build)
+- [how to preload and play a drum](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example2/build)
 - [how to create selectable list of instruments and delay for loading](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example3/build)
 - [how to create selectable list of drum](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example4/build)
 - [how to play short musical fragments](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example5/build)
@@ -146,6 +146,27 @@ componentDidMount() {
 
 [Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example4/build)
 
+### Play continuous note sounds
+
+Use this.midiSounds.player.queueWaveTable to start sound and return reference to envelope.
+Use envelope.cancel() to stop sound.
+
+[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example10/build)
+
+### List of drums
+
+Use this.midiSounds.player.loader.drumsKeys() to get array of drums.
+Use this.midiSounds.player.loader.drumInfo(i).title to get readable drum name.
+
+[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example4/build)
+
+### List of instruments
+
+Use this.midiSounds.player.loader.instrumentKeys() to get array of drums.
+Use this.midiSounds.player.loader.instrumentInfo(i).title to get readable drum name.
+
+[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example3/build)
+
 ### Load instrument
 
 Use this.midiSounds.cacheInstrument and this.midiSounds.cacheDrum to start instrument and drum loading.
@@ -153,12 +174,64 @@ Use this.midiSounds.player.loader.waitLoad to wait till all instruments and drum
 
 [Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example3/build)
 
-### Play continuous note sounds
+### Change instrument and drum volume
 
-Use this.midiSounds.player.queueWaveTable to start sound and return reference to envelope.
-Use envelope.cancel() to stop sound.
+Use setInstrumentVolume(instrument, volume) and setDrumVolume(drum, volume)
 
-[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example10/build)
+[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example9/build)
+
+### Change Master Volume
+
+Use setMasterVolume(n).
+
+[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example9/build)
+
+### Change Echo Level
+
+Use setEchoLevel(value).
+
+[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example9/build)
+
+### Change Equalizer
+
+- setBand32(level)
+- setBand64(level)
+- setBand128(level)
+- setBand256(level)
+- setBand512(level)
+- setBand1k(level)
+- setBand2k(level)
+- setBand4k(level)
+- setBand8k(level)
+- setBand16k(level)
+
+[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example9/build)
+
+### Cancel all sounds
+
+Use cancelQueue()
+
+### Time
+
+Use contextTime() to get current time of Audio context.
+How to calculate musical durations
+
+```
+var bpm = 120;
+var N = 4 * 60 / bpm;
+var duration16th = N/16;
+```
+
+### Play drums
+
+- playDrumsAt(when, drums)
+- playDrumsNow(drums)
+
+drums - array of drum numbers
+when - time 
+
+
+
 
 ## Functions
 
