@@ -232,9 +232,10 @@ var duration16th = N/16;
 - playDrumsAt(when, drums)
 - playDrumsNow(drums)
 
-when - time 
+parameters
 
-drums - array of drum numbers
+- when - time 
+- drums - array of drum numbers
 
 ### Play instruments
 
@@ -247,13 +248,12 @@ drums - array of drum numbers
 - playSnapNow(instrument, pitches, duration)
 - playSnapAt(when, instrument, pitches, duration)
 
-when - time 
+parameters
 
-instrument - number of instrument
-
-pitches - array of pitches
-
-duration - durations
+- when - time 
+- instrument - number of instrument
+- pitches - array of pitches
+- duration - durations
 
 ### Play beat
 
@@ -261,11 +261,9 @@ duration - durations
 playBeatAt(when, beat, bpm)
 ```
 
-when - time
-
-beat - array of drums and chords
-
-bpm - beats per minute
+- when - time
+- beat - array of drums and chords
+- bpm - beats per minute
 
 Example of beat array
 ```
@@ -280,13 +278,10 @@ Example of beat array
 	]
 ]
 ```
-drum1, drum2 - numbers of drums
-
-guitar, bass - numbers of instruments
-
-[S6+1,S5+3,S4+3] and [S6+1,S5+3,S4+3] - array with pitches
-
-1/4 - duration as part of full note for the bpm
+- drum1, drum2 - numbers of drums
+- guitar, bass - numbers of instruments
+- [S6+1,S5+3,S4+3] and [S6+1,S5+3,S4+3] - array with pitches
+- 1/4 - duration as part of full note for the bpm
 
 down - 1|2|3 for strum down, strum up or snap
 
@@ -296,13 +291,10 @@ down - 1|2|3 for strum down, strum up or snap
 startPlayLoop(beats, bpm, density, fromBeat)
 ```
 
-beats - array of beat arrays
-
-bpm - beats per minute
-
-dencity - duration of row at array
-
-fromBeat - start beat number
+- beats - array of beat arrays
+- bpm - beats per minute
+- dencity - duration of row at array
+- fromBeat - start beat number
 
 Use stopPlayLoop() to cancel play.
 
