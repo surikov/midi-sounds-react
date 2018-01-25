@@ -227,28 +227,11 @@ var duration16th = N/16;
 - playDrumsAt(when, drums)
 - playDrumsNow(drums)
 
-drums - array of drum numbers
 when - time 
+drums - array of drum numbers
 
+### Play instruments
 
-
-
-## Functions
-
-- contextTime()
-- cancelQueue()
-
-Drums
-
-- cacheDrum(n)
-- setDrumVolume(drum, volume)
-- playDrumsAt(when, drums)
-- playDrumsNow(drums)
-
-Instruments
-
-- cacheInstrument(n)
-- setInstrumentVolume(instrument, volume)
 - playChordNow(instrument, pitches, duration)
 - playChordAt(when, instrument, pitches, duration)
 - playStrumUpNow(instrument, pitches, duration)
@@ -258,26 +241,53 @@ Instruments
 - playSnapNow(instrument, pitches, duration)
 - playSnapAt(when, instrument, pitches, duration)
 
-Properties
+when - time 
+instrument - number of instrument
+pitches - array of pitches
+duration - durations
 
-- setMasterVolume(n)
-- setEchoLevel(value)
-
-Equalizer
-
-- setBand32(level)
-- setBand64(level)
-- setBand128(level)
-- setBand256(level)
-- setBand512(level)
-- setBand1k(level)
-- setBand2k(level)
-- setBand4k(level)
-- setBand8k(level)
-- setBand16k(level)
-
-Loops
+### Play beat
 
 - playBeatAt(when, beat, bpm)
-- startPlayLoop(beats, bpm, density, fromBeat)
-- stopPlayLoop()
+
+when - time
+beat - array of drums and chords
+bpm - beats per minute
+
+Example of beat array
+```
+[
+	[
+		drum1
+		,drum2
+	]
+	,[
+		[guitar,[S6+1,S5+3,S4+3],1/4,down]
+		[bass,[S6+1,S5+3,S4+3],1/4]
+	]
+]
+```
+drum1, drum2 - numbers of drums
+guitar, bass - numbers of instruments
+[S6+1,S5+3,S4+3] and [S6+1,S5+3,S4+3] - array with pitches
+1/4 - duration as part of full note for the bpm
+down - 1|2|3 for strum down, strum up or snap
+
+### Play loop
+
+startPlayLoop(beats, bpm, density, fromBeat)
+
+beats - array of beat arrays
+bpm - beats per minute
+dencity - duration of row at array
+fromBeat - start beat number
+
+Use stopPlayLoop() to cancel play 
+
+[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example9/build)
+
+## How to get help
+
+Feel free to ask any help at project [issues](https://github.com/surikov/midi-sounds-react/issues).
+
+
