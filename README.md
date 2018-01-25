@@ -4,32 +4,65 @@ You can use 1500 digitized musical instruments and percussions from free sound l
 
 ## Examples
 
-- [example 1](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example1/build)
-  - preload and play an instrument
-- [example 2](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example2/build)
-  - preload and play a drum
-- [example 3](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example3/build)
-  - selectable list of instruments
-  - load instrumen in realtime
-- [example 4](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example4/build)
-  - selectable list of drums
-  - load drum in realtime
-- [example 5](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example5/build)
-  - play short musical fragments
-- [example 6](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example6/build)
-  - sequencer for drums
-- [example 7](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example7/build)
-  - struming
-- [example 8](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example8/build)
-  - struming in loop
-- [example 9](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example9/build)
-  - change properties
-- [example 10](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example10/build)
-  - piano
-- [example 11](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example11/build)
-  - independed channels
+- [how preload and play an instrument](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example1/build)
+- [how preload and play a drum](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example2/build)
+- [how to create selectable list of instruments and delay for loading](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example3/build)
+- [how to create selectable list of drum](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example4/build)
+- [how to play short musical fragments](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example5/build)
+- [how to create sequencer](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example6/build)
+- [how to use struming](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example7/build)
+- [how to use struming for guitar music](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example8/build)
+- [how to programmatically change properties of sound](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example9/build)
+- [how to attach sounds to piano keys](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example10/build)
+- [how to use independed channels](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example11/build)
   
-[Sources of examples](https://github.com/surikov/midi-sounds-react-examples/tree/master/examples)
+[Sources of all examples](https://github.com/surikov/midi-sounds-react-examples/tree/master/examples)
+
+## Tutorial
+
+Open Node.js command line window.
+
+Create React application from [https://reactjs.org/tutorial/tutorial.html](https://reactjs.org/tutorial/tutorial.html)
+
+Modify package.json to add dependency to **midi-sounds-react** component
+
+```
+{
+  "name": "my-test",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://myserver",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.0",
+    "midi-sounds-react": "^1.2.45"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+Install dependencies
+
+```
+npm install
+```
+
+Start application
+
+```
+npm start
+```
+
+Navigate browser to http://localhost:3000
+
+Modify src/App.js to add an Component and button.
+
 
 Dependencies package.json
 
