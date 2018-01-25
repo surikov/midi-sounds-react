@@ -112,22 +112,43 @@ this.midiSounds.playChordNow(3, [60], 2.5);
 
 See [live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example1/build), download example from [https://github.com/surikov/midi-sounds-react-examples](https://github.com/surikov/midi-sounds-react-examples).
 
+## Reference
+
+### Component parameters
+
+```html
+<MIDISounds ref={(ref) => (this.midiSoundsDrums = ref)} appElementName="root" instruments={[111]} drums={[2,33]} />
+```
+
+- this.midiSoundsDrums - variable to use component from code
+- appElementName - name of main div of application
+- instruments - array of instruments to preload
+- drums - array of drums to preload
+
+### Initializing
+
+MIDISounds will be initialized after first render. Use componentDidMount to rerender page with initialized component.
+
+```js
+componentDidMount() {
+		console.log('rerender after init');
+		this.setState(this.state);
+	}
+```
+
+[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example4/build)
+
+### Load instrument
+
+Use this.midiSounds.cacheInstrument and this.midiSounds.cacheDrum to start instrument and drum loading.
+Use this.midiSounds.player.loader.waitLoad to wait till all instruments and drums are loaded.
+
+[Live example](https://surikov.github.io/midi-sounds-react-examples/examples/midi-sounds-example3/build)
+
+### Delay for 
 
 
-
-
-
-
-
-Dependencies package.json
-
-- "midi-sounds-react": "^1.2.45"
-
-Component
-
-- <MIDISounds ref={(ref) => (this.midiSoundsDrums = ref)} appElementName="root" instruments={[overdrive,palmMute,bassGuitar]} drums={[bassDrum,snare,hiHat,cymbal]} />
-  
-Functions
+## Functions
 
 - contextTime()
 - cancelQueue()
