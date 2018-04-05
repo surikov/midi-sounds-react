@@ -1,6 +1,6 @@
 {
   "name": "midi-sounds-react",
-  "version": "1.2.50",
+  "version": "1.2.51",
   "description": "Sounds for React musical applications.",
   "keywords": [
     "react",
@@ -24,19 +24,19 @@
   "homepage": "https://surikov.github.io/midi-sounds-react/",
   "main": "bin/midisoundsreact.js",
   "repository": {
-	  "type": "git",
-	  "url": "https://github.com/surikov/midi-sounds-react.git"
-	},
-  "license" : "MIT",
+    "type": "git",
+    "url": "https://github.com/surikov/midi-sounds-react.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "react": "^16.2.0",
-	"react-dom": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-modal": "^3.1.10",
-    "webaudiofont": "^2.5.0"
+    "webaudiofont": "^2.5.21"
   },
   "scripts": {
     "test": "echo \"No test specified\" && exit 1",
-	"build":"echo no build"
+    "build": "echo no build"
   },
   "author": {
     "name": "Sergey Surikov",
@@ -45,7 +45,7 @@
   "devDependencies": {
     "babel-cli": "6.24.1",
     "babel-core": "6.24.1",
-	"babel-preset-react": "6.24.1",
-	"babel-preset-es2015": "6.24.1"
-	}
+    "babel-preset-react": "6.24.1",
+    "babel-preset-es2015": "6.24.1"
+  }
 }

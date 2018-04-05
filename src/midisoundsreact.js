@@ -59,7 +59,7 @@ const STYLE = {
 class MIDISounds extends React.Component {
   constructor(props) {
     super(props);
-	console.log('MIDISounds v1.2.46');
+	console.log('MIDISounds v1.2.47');
     this.state = {
       showModal: false
       , appElementName: this.props.appElementName
@@ -157,7 +157,7 @@ class MIDISounds extends React.Component {
         <ReactModal isOpen={this.state.showModal} contentLabel="MIDISounds options" shouldCloseOnOverlayClick={true} onRequestClose={this.handleCloseModal}>
           <div style={STYLE.MIDISoundsInfo}>
 		  <p>Master volume {Math.round(this.state.master*100)}%</p>
-            <table align="center">
+            <table style="margin: 0px auto;">
 				<tbody>
 					<tr>
 						<td style={STYLE.tdOn} onClick={(e)=>this.setMasterVolume(0/9)}></td>
@@ -176,7 +176,7 @@ class MIDISounds extends React.Component {
 			
 			
 			<p>Echo level {Math.round(this.state.echo*100)}%</p>
-			<table align="center">
+			<table style="margin: 0px auto;">
 				<tbody>
 					<tr>
 						<td style={STYLE.tdOn} onClick={(e)=>this.setEchoLevel(0/9)}></td>
@@ -193,7 +193,7 @@ class MIDISounds extends React.Component {
 				</tbody>
 			</table>
             <p>Equalizer</p>
-			<table align="center">
+			<table style="margin: 0px auto;">
 				<tbody>
 <tr>
 						<td style={this.state.q32>9?STYLE.eqOn:STYLE.eqOff} onClick={(e)=>this.setBand32(10)}></td>
