@@ -29,6 +29,9 @@ const STYLE = {
   },
   MIDISoundsEq: {},
   MIDISoundsVl: {},
+  centerTable: {
+    margin: '0px auto'
+  },
   tdOn: {
     backgroundColor: 'rgb(111,145,124)',
     width: '0.5cm',
@@ -55,7 +58,7 @@ const STYLE = {
 class MIDISounds extends React.Component {
   constructor(props) {
     super(props);
-    console.log('MIDISounds v1.2.47');
+    console.log('MIDISounds v1.2.48');
     this.state = {
       showModal: false,
       appElementName: this.props.appElementName,
@@ -220,7 +223,7 @@ class MIDISounds extends React.Component {
           ),
           React.createElement(
             'table',
-            { style: 'margin: 0px auto;' },
+            { style: STYLE.centerTable },
             React.createElement(
               'tbody',
               null,
@@ -249,7 +252,7 @@ class MIDISounds extends React.Component {
           ),
           React.createElement(
             'table',
-            { style: 'margin: 0px auto;' },
+            { style: STYLE.centerTable },
             React.createElement(
               'tbody',
               null,
@@ -276,7 +279,7 @@ class MIDISounds extends React.Component {
           ),
           React.createElement(
             'table',
-            { style: 'margin: 0px auto;' },
+            { style: STYLE.centerTable },
             React.createElement(
               'tbody',
               null,
