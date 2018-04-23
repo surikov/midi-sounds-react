@@ -1,6 +1,6 @@
 {
   "name": "midi-sounds-react",
-  "version": "1.2.52",
+  "version": "1.2.54",
   "description": "Sounds for React musical applications.",
   "keywords": [
     "react",
@@ -32,7 +32,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-modal": "^3.1.10",
-    "webaudiofont": "^2.5.21"
+    "webaudiofont": "^2.5.24"
   },
   "scripts": {
     "test": "echo \"No test specified\" && exit 1",
